@@ -1,9 +1,0 @@
-[33m158a6a2[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m setting up folder structure
-[33m57d20f5[m setting up folder structure
-[33ma6f5dd5[m setting up folder structure
-[33med4d5cd[m setting up floder structure
-[33mef037ba[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m setting up folder structure
-[33m8cdfa94[m there is a change in setup.py and requirements.txt file. I have added author name and email in setup.py file and added python-dotenv in requirements.txt file. I have also added .env and venv in .gitignore file to avoid pushing them to the repository.
-[33m2f2d7dc[m setting up folder structure
-[33m8a214f6[m first commit
-[33m04219ef[m first commit
