@@ -1,12 +1,18 @@
-langchain-astradb
-langchain
-langchain-community 
+# Core LangChain — pin to 0.3.x which has the expected API
+langchain==0.3.25
+langchain-core==0.3.84
+langchain-community==0.3.24
 langchain-groq
-datasets
-pypdf
-python-dotenv
+langchain-huggingface
+langchain-astradb
+
+# Data
+datasets>=2.19.0
 pandas
-flask
 python-dotenv
 
--e.
+# Web
+flask
+
+# Install local package
+-e .

@@ -1,57 +1,47 @@
 from langchain_astradb import AstraDBVectorStore
 from langchain_huggingface import HuggingFaceEndpointEmbeddings
-import os
 from flipkart.data_converter import data_converter
 from dotenv import load_dotenv
+import os
+
 load_dotenv()
 
-GROQ_API_KEY=os.getenv("GROQ_API_KEY")
-ASTRA_DB_API_ENDPOINT=os.getenv("ASTRA_DB_API_ENDPOINT")
-ASTRA_DB_APPLICATION_TOKEN=os.getenv("ASTRA_DB_APPLICATION_TOKEN")
-ASTRA_DB_KEYSPACE=os.getenv("ASTRA_DB_KEYSPACE")
-HF_TOKEN = os.getenv("HF_TOKEN")
-
-
-GROQ_API_KEY=os.getenv("GROQ_API_KEY")
-ASTRA_DB_API_ENDPOINT=os.getenv("ASTRA_DB_API_ENDPOINT")
-ASTRA_DB_APPLICATION_TOKEN=os.getenv("ASTRA_DB_APPLICATION_TOKEN")
-ASTRA_DB_KEYSPACE=os.getenv("ASTRA_DB_KEYSPACE")
-HF_TOKEN = os.getenv("HF_TOKEN")
+ASTRA_DB_API_ENDPOINT      = os.getenv("ASTRA_DB_API_ENDPOINT")
+ASTRA_DB_APPLICATION_TOKEN = os.getenv("ASTRA_DB_APPLICATION_TOKEN")
+ASTRA_DB_KEYSPACE          = os.getenv("ASTRA_DB_KEYSPACE")
 
 embeddings = HuggingFaceEndpointEmbeddings(
     huggingfacehub_api_token=os.getenv("HUGGINGFACE_TOKEN"),
-    repo_id="BAAI/bge-base-en-v1.5"
+    repo_id="BAAI/bge-base-en-v1.5",
 )
 
-def data_ingestion(status):
 
+def data_ingestion(status=None, category="Electronics", max_reviews=5000):
+    """
+    status=None  → ingest fresh documents into AstraDB (run once)
+    status="done" → connect to existing collection (normal app startup)
+    """
+    # autodetect_collection=True skips the create_collection call on startup
+    # which was causing the timeout when the collection already exists
     vstore = AstraDBVectorStore(
         embedding=embeddings,
-        collection_name = "flipkart",
-        api_endpoint = ASTRA_DB_API_ENDPOINT,
-        token = ASTRA_DB_APPLICATION_TOKEN,
-        namespace = ASTRA_DB_KEYSPACE 
+        collection_name="flipkart",
+        api_endpoint=ASTRA_DB_API_ENDPOINT,
+        token=ASTRA_DB_APPLICATION_TOKEN,
+        namespace=ASTRA_DB_KEYSPACE,
+        autodetect_collection=True,     # ← fixes the timeout on startup
     )
 
-    storage = status
-
-    if storage == None:
-        docs = data_converter()
+    if status is None:
+        print(f"[data_ingestion] Ingesting {category} reviews ...")
+        docs = data_converter(category=category, max_reviews=max_reviews)
         insert_ids = vstore.add_documents(docs)
-    
-    else:
-        return vstore
-    return vstore, insert_ids
+        print(f"[data_ingestion] Inserted {len(insert_ids)} documents.")
+        return vstore, insert_ids
+
+    return vstore
+
 
 if __name__ == "__main__":
-
-    vstore, insert_ids = data_ingestion(None)
-    print(f"\n Inserted {len(insert_ids)} documents.")
-    results = vstore.similarity_search("Can you tell me the low budget sound basshead?")
-    for res in results:
-        print(f"\n {res.page_content} [{res.metadata}]")
-
-
-
-
-
+    vstore, ids = data_ingestion(status=None)
+    print(f"Inserted {len(ids)} documents.")
