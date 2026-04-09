@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, session
-from flipkart.retrieval_generation import generation
-from flipkart.data_ingestion import data_ingestion
-from flipkart.data_converter import get_top_products
+from AlgoKart.retrieval_generation import generation
+from AlgoKart.data_ingestion import data_ingestion
+from AlgoKart.data_converter import get_top_products
 import os
 
 vstore = data_ingestion("done")

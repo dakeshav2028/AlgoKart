@@ -1,6 +1,6 @@
 from langchain_astradb import AstraDBVectorStore
 from langchain_huggingface import HuggingFaceEndpointEmbeddings
-from flipkart.data_converter import data_converter
+from AlgoKart.data_converter import data_converter
 from dotenv import load_dotenv
 import os
 

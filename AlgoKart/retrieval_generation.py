@@ -5,8 +5,8 @@ from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_groq import ChatGroq
-from flipkart.data_ingestion import data_ingestion
-from flipkart.data_converter import get_top_products
+from AlgoKart.data_ingestion import data_ingestion
+from AlgoKart.data_converter import get_top_products
 
 from dotenv import load_dotenv
 import os
