@@ -25,3 +25,27 @@ C:\notes of course\AlgoKart\venv\Lib\site-packages\langchain_astradb\vectorstore
 127.0.0.1 - - [09/Apr/2026 16:32:34] "POST /get HTTP/1.1" 200 -
 127.0.0.1 - - [09/Apr/2026 16:34:25] "POST /get HTTP/1.1" 200 -
 127.0.0.1 - - [09/Apr/2026 16:34:56] "HEAD / HTTP/1.1" 200 -
+127.0.0.1 - - [09/Apr/2026 16:39:49] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [09/Apr/2026 16:39:49] "GET /style.css HTTP/1.1" 200 -
+127.0.0.1 - - [09/Apr/2026 16:39:49] "GET /logo.png HTTP/1.1" 200 -
+127.0.0.1 - - [09/Apr/2026 16:39:49] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [09/Apr/2026 16:39:49] "GET /style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Apr/2026 16:39:49] "GET /logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [09/Apr/2026 16:39:50] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [09/Apr/2026 16:39:50] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [09/Apr/2026 16:39:55] "POST /get HTTP/1.1" 200 -
+127.0.0.1 - - [09/Apr/2026 16:40:18] "POST /get HTTP/1.1" 200 -
+127.0.0.1 - - [09/Apr/2026 16:41:19] "POST /get HTTP/1.1" 200 -
+127.0.0.1 - - [09/Apr/2026 16:42:03] "POST /get HTTP/1.1" 200 -
+ * Detected change in 'C:\\notes of course\\AlgoKart\\app.py', reloading
+[app.py] Initializing vstore and RAG chain...
+[app.py] Fetching top products...
+[_load_meta] Connecting to Hugging Face for Electronics metadata...
+[get_top_products] Warning: Dataset scripts are no longer supported, but found Amazon-Reviews-2023.py
+[app.py] Ready. Top products loaded:
+Top products data temporarily unavailable.
+ * Restarting with stat
+C:\notes of course\AlgoKart\venv\Lib\site-packages\langchain_astradb\vectorstores.py:1067: UserWarning: Collection supports lexical; however, autodetect found documents without a $lexical. The $lexical field will be set for new documents, but the pre-existing documents might not be reached by lexical search when running hybrid search mode.
+  self.document_codec = _detect_document_codec(
+127.0.0.1 - - [09/Apr/2026 16:43:16] "POST /get HTTP/1.1" 200 -
+127.0.0.1 - - [09/Apr/2026 16:43:57] "POST /get HTTP/1.1" 200 -

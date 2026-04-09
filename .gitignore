@@ -1,3 +1,10 @@
-venv
+venv/
 .env
-AlgoKart.egg-info
+AlgoKart.egg-info/
+__pycache__/
+*.pyc
+debug_log.txt
+*.log
+.DS_Store
+.vscode/
+.idea/
