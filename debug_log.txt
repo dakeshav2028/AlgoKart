@@ -53,3 +53,6 @@ C:\notes of course\AlgoKart\venv\Lib\site-packages\langchain_astradb\vectorstore
 127.0.0.1 - - [09/Apr/2026 16:57:29] "GET /logo.png HTTP/1.1" 304 -
 127.0.0.1 - - [09/Apr/2026 16:57:29] "GET /style.css HTTP/1.1" 304 -
 127.0.0.1 - - [09/Apr/2026 16:57:36] "POST /get HTTP/1.1" 200 -
+127.0.0.1 - - [09/Apr/2026 17:13:41] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [09/Apr/2026 17:13:41] "GET /style.css HTTP/1.1" 304 -
+127.0.0.1 - - [09/Apr/2026 17:13:41] "GET /logo.png HTTP/1.1" 304 -

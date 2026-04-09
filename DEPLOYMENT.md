@@ -30,6 +30,7 @@ This is the **most important step**. Click on the **Advanced** button or the **E
 | `ASTRA_DB_API_ENDPOINT` | From your Datastax Astra dashboard |
 | `ASTRA_DB_APPLICATION_TOKEN` | From your Datastax Astra dashboard |
 | `ASTRA_DB_KEYSPACE` | Usually `default_keyspace` |
+| `PYTHON_VERSION` | `3.11.9` (Crucial for LangChain stability) |
 
 ## Step 4: Deploy
 Click **Create Web Service**. Render will now:
