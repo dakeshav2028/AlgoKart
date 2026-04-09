@@ -37,7 +37,7 @@ HUGGINGFACE_TOKEN=...
 ## 4. First-time ingestion (run ONCE to load Amazon data into AstraDB)
 
 ```powershell
-python -m flipkart.data_ingestion
+python -m AlgoKart.data_ingestion
 ```
 
 ## 5. Run the app
