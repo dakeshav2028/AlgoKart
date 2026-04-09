@@ -11,7 +11,7 @@ ASTRA_DB_APPLICATION_TOKEN = os.getenv("ASTRA_DB_APPLICATION_TOKEN")
 ASTRA_DB_KEYSPACE          = os.getenv("ASTRA_DB_KEYSPACE")
 
 embeddings = HuggingFaceEndpointEmbeddings(
-    huggingfacehub_api_token=os.getenv("HUGGINGFACE_TOKEN"),
+    huggingfacehub_api_token=os.getenv("HF_TOKEN"),
     repo_id="BAAI/bge-base-en-v1.5",
 )
 

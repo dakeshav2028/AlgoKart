@@ -4,13 +4,15 @@ from AlgoKart.data_ingestion import data_ingestion
 from AlgoKart.data_converter import get_top_products
 import os
 
+print("[app.py] Initializing vstore and RAG chain...")
 vstore = data_ingestion("done")
 chain = generation(vstore)
 
-# Pre-compute top products once at startup (avoids re-reading CSV every request)
+print("[app.py] Fetching top products...")
 TOP_PRODUCTS = get_top_products(n=5)
+print(f"[app.py] Ready. Top products loaded:\n{TOP_PRODUCTS}")
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='frontend', static_folder='frontend', static_url_path='')
 app.secret_key = os.urandom(24)   # needed for Flask session
 
 

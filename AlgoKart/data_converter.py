@@ -39,6 +39,7 @@ REVIEW_PARQUET = (
 
 def _load_reviews(category: str, max_rows: int) -> pd.DataFrame:
     """Load reviews using datasets library with parquet config (no script)."""
+    print(f"[_load_reviews] Connecting to Hugging Face for {category} reviews...")
     from datasets import load_dataset
     # Use the parquet-converted split — avoids the loading script
     ds = load_dataset(
@@ -68,6 +69,7 @@ def _load_reviews(category: str, max_rows: int) -> pd.DataFrame:
 
 def _load_meta(category: str) -> pd.DataFrame:
     """Load product metadata using datasets library with parquet config."""
+    print(f"[_load_meta] Connecting to Hugging Face for {category} metadata...")
     from datasets import load_dataset
     ds = load_dataset(
         "McAuley-Lab/Amazon-Reviews-2023",
