@@ -1,6 +1,6 @@
 from langchain.chains import create_retrieval_chain, create_history_aware_retriever
 from langchain.chains.combine_documents import create_stuff_documents_chain
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder, PromptTemplate
 from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_community.chat_message_histories import ChatMessageHistory
@@ -24,8 +24,11 @@ def get_session_history(session_id: str) -> BaseChatMessageHistory:
     return store[session_id]
 
 
-def generation(vstore):
-    retriever = vstore.as_retriever(search_kwargs={"k": 5})
+def generation(vstore, category=None):
+    search_kwargs = {"k": 5}
+    if category:
+        search_kwargs["filter"] = {"category": category}
+    retriever = vstore.as_retriever(search_kwargs=search_kwargs)
 
     contextualize_q_prompt = ChatPromptTemplate.from_messages([
         ("system",
@@ -54,6 +57,7 @@ INSTRUCTIONS:
 - Mention avg rating when available. Be honest about low-rated products.
 - Personalize using purchase history if provided.
 - Keep answers concise and friendly.
+- IMPORTANT: Always provide a clickable markdown link to the product using the provided Amazon Link (e.g. [Product Name](https://www.amazon.com/dp/ASIN)) whenever you mention or recommend a product.
 
 TOP SELLING PRODUCTS:
 {top_products}
@@ -75,7 +79,13 @@ YOUR ANSWER:
         ("human", "{input}"),
     ])
 
-    question_answer_chain = create_stuff_documents_chain(model, qa_prompt)
+    document_prompt = PromptTemplate(
+        input_variables=["page_content", "asin"],
+        template="{page_content}\nASIN: {asin}\nLink: https://www.amazon.com/dp/{asin}"
+    )
+    question_answer_chain = create_stuff_documents_chain(
+        model, qa_prompt, document_prompt=document_prompt
+    )
     rag_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
 
     return RunnableWithMessageHistory(

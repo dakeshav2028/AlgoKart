@@ -18,7 +18,7 @@ Fill in the following details:
 - **Branch**: `main` (or yours)
 - **Runtime**: `Python 3`
 - **Build Command**: `pip install -r requirements.txt`
-- **Start Command**: `gunicorn app:app`
+- **Start Command**: `streamlit run app.py --server.port $PORT --server.address 0.0.0.0`
 
 ## Step 3: Set Environment Variables
 This is the **most important step**. Click on the **Advanced** button or the **Environment** tab and add the following keys from your `.env` file:
@@ -36,7 +36,7 @@ This is the **most important step**. Click on the **Advanced** button or the **E
 Click **Create Web Service**. Render will now:
 1.  Download your code.
 2.  Install all dependencies from `requirements.txt`.
-3.  Start the app using Gunicorn.
+3.  Start the app using Streamlit.
 
 ## Troubleshooting
 - **Build Fails**: Check the logs for missing dependencies.

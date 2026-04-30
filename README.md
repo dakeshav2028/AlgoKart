@@ -27,3 +27,8 @@ HUGGINGFACE_TOKEN=your_token_here
 
 - <either mention -e . inside your requirements.txt Or run python setup.py install >
 
+## Run the Streamlit App
+
+```bash
+streamlit run app.py
+```

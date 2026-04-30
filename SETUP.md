@@ -37,11 +37,16 @@ HUGGINGFACE_TOKEN=...
 ## 4. First-time ingestion (run ONCE to load Amazon data into AstraDB)
 
 ```powershell
+# Default is Electronics
 python -m AlgoKart.data_ingestion
+
+# You can also specify other categories
+python -m AlgoKart.data_ingestion Books
+python -m AlgoKart.data_ingestion All_Beauty
 ```
 
 ## 5. Run the app
 
 ```powershell
-python app.py
+streamlit run app.py
 ```

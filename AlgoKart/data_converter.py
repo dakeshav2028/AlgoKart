@@ -57,7 +57,7 @@ def _load_reviews(category: str, max_rows: int) -> pd.DataFrame:
         if len(text) < MIN_LEN:
             continue
         rows.append({
-            "asin":      item.get("asin", ""),
+            "asin":      item.get("parent_asin", ""),
             "user_id":   item.get("user_id", ""),
             "rating":    float(item.get("rating", 0)),
             "title":     item.get("title", ""),
@@ -156,11 +156,13 @@ def get_top_products(category: str = CATEGORY, n: int = 5) -> str:
         lines = []
         for _, row in top.iterrows():
             price_str = f" | Price: {row['price']}" if row["price"] else ""
+            asin = row['asin']
             lines.append(
                 f"- {row['product_title']}"
                 f" | Avg rating: {row['avg_rating']:.1f}/5"
                 f" | Reviews: {int(row['rating_number'])}"
                 f"{price_str}"
+                f" | Link: https://www.amazon.com/dp/{asin}"
             )
         return "\n".join(lines) if lines else "No top products data available."
     except Exception as e:
