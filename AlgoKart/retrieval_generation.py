@@ -56,7 +56,7 @@ INSTRUCTIONS:
 - Mention avg rating when available. Be honest about low-rated products.
 - Personalize using purchase history if provided.
 - Keep answers concise and friendly.
-- IMPORTANT: Always provide a clickable markdown link to the product using the provided Amazon Link (e.g. [Product Name](https://www.amazon.com/dp/ASIN)) whenever you mention or recommend a product.
+- IMPORTANT: Whenever you mention or recommend a product, you MUST format its name as a clickable markdown link that points EXACTLY to the Amazon India home page like this: [Product Name](https://www.amazon.in). DO NOT append any ASIN or anything else to the URL.
 
 TOP SELLING PRODUCTS:
 {top_products}
@@ -80,7 +80,7 @@ YOUR ANSWER:
 
     document_prompt = PromptTemplate(
         input_variables=["page_content", "asin"],
-        template="{page_content}\nASIN: {asin}\nLink: https://www.amazon.com/dp/{asin}"
+        template="{page_content}\nASIN: {asin}\nLink: https://www.amazon.in"
     )
     question_answer_chain = create_stuff_documents_chain(
         model, qa_prompt, document_prompt=document_prompt

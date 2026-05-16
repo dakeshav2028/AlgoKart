@@ -162,7 +162,7 @@ def get_top_products(category: str = CATEGORY, n: int = 5) -> str:
                 f" | Avg rating: {row['avg_rating']:.1f}/5"
                 f" | Reviews: {int(row['rating_number'])}"
                 f"{price_str}"
-                f" | Link: https://www.amazon.com/dp/{asin}"
+                f" | Link: https://www.amazon.in"
             )
         return "\n".join(lines) if lines else "No top products data available."
     except Exception as e:
